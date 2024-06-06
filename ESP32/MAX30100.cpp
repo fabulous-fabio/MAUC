@@ -20,8 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "MAX30100.h"
 
-MAX30100::MAX30100()
+MAX30100::MAX30100(int sda_pin,int scl_pin)
 {
+    Wire.begin(sda_pin, scl_pin);
+}
+
+
+MAX30100::MAX30100(){
+    Wire.begin();
 }
 
 bool MAX30100::begin(unsigned long busSpeed)
