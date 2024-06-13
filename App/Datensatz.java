@@ -1,34 +1,37 @@
-package de.carpelibrum.sqlite;
+package de.othaw.inventur;
 
 import java.util.Date;
+import java.sql.Time;
 
 public class Datensatz {
-	
 
-	public long id;
-    public Int messintervall;
-    public String benutzername;
-    public Date datum;
-	public Int puls;
-	public Int blutsauerstoff;
 
-    
-    /**
-     * Konstruktor
-     */
-	public Datensatz(String name, Int messintervall, Date datum, Int puls, Int blutsauerstoff) {
+	public long _id;
+	public int messintervall;
+	public String benutzername;
+	public Date datum;
+	public Time time;
+	public int puls;
+	public int blutsauerstoff;
+
+
+	/**
+	 * Konstruktor
+	 */
+	public Datensatz(String name, int messintervall, Date datum, Time time, int puls, int blutsauerstoff) {
 		this.benutzername          = benutzername;
-		this.datum   = datum;
-		this.messintervall        = messintervall;
+		this.datum = datum;
+		this.time = time;
+		this.messintervall = messintervall;
 		this.puls = puls;
 		this.blutsauerstoff = blutsauerstoff;
-		
-		id = -1; // wird erst beim Einfuegen in die Datenbank erzeugt
+
+		_id = -1; // wird erst beim Einfuegen in die Datenbank erzeugt
 	}
 
-    /**
-     * Konstruktor
-     */
+	/**
+	 * Konstruktor
+	 */
 	public Datensatz() {
 	}
 }
