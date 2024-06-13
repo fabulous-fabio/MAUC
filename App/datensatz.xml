@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="8dp">
+
+	<TextView
+		android:id="@+id/textViewBenutzername"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Benutzername" />
+
+	<TextView
+		android:id="@+id/textViewDatum"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Datum" />
+
+	<TextView
+		android:id="@+id/textViewUhrzeit"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Uhrzeit" />
+
+	<TextView
+		android:id="@+id/textViewMessintervall"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Messintervall" />
+
+	<TextView
+		android:id="@+id/textViewPuls"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Puls" />
+
+	<TextView
+		android:id="@+id/textViewBlutsauerstoff"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Blutsauerstoff" />
+
+</LinearLayout>
