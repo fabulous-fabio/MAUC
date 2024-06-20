@@ -1,0 +1,468 @@
+[
+    {
+        "id": "281838443bc0d00c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8347a8fc51148919",
+        "type": "serial in",
+        "z": "281838443bc0d00c",
+        "name": "Test",
+        "serial": "7467ef3a781d79e1",
+        "x": 70,
+        "y": 300,
+        "wires": [
+            [
+                "0b5eaa9d018e8599"
+            ]
+        ]
+    },
+    {
+        "id": "0ec76f71b258e260",
+        "type": "ui_numeric",
+        "z": "281838443bc0d00c",
+        "name": "Sauerstoff",
+        "label": "Blutsauerstoff",
+        "tooltip": "",
+        "group": "49312437144038f1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "str",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 690,
+        "y": 80,
+        "wires": [
+            [
+                "5a62b0c5473c8d31"
+            ]
+        ]
+    },
+    {
+        "id": "be615ae467953ba5",
+        "type": "ui_chart",
+        "z": "281838443bc0d00c",
+        "name": "Pulsschlag",
+        "group": "49312437144038f1",
+        "order": 0,
+        "width": "0",
+        "height": "0",
+        "label": "Puls",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Hallo",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "500",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0b5eaa9d018e8599",
+        "type": "function",
+        "z": "281838443bc0d00c",
+        "name": "function 1",
+        "func": "var myMsg = String(msg.payload).split('-');\nvar spo2        = { payload: myMsg[0] };\nvar heartRate   = { payload: myMsg[1] };\nvar ir          = { payload: myMsg[2] };\nvar red         = { payload: myMsg[3] };\nreturn [spo2, heartRate, ir, red, msg];",
+        "outputs": 5,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 300,
+        "wires": [
+            [
+                "0ec76f71b258e260"
+            ],
+            [
+                "be615ae467953ba5",
+                "ea664c8a92a2f20e",
+                "buffer_data",
+                "6281fbdcca2df10f"
+            ],
+            [
+                "9accb46f54373d9d"
+            ],
+            [
+                "9d48fd58b30d594e"
+            ],
+            [
+                "27454876dc3da34e"
+            ]
+        ]
+    },
+    {
+        "id": "a6ec3a286cad1d0f",
+        "type": "ui_numeric",
+        "z": "281838443bc0d00c",
+        "name": "Puls pro Minute",
+        "label": "durchschnittlicher Puls der letzten Minute",
+        "tooltip": "",
+        "group": "49312437144038f1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "str",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 1120,
+        "y": 220,
+        "wires": [
+            [
+                "27454876dc3da34e"
+            ]
+        ]
+    },
+    {
+        "id": "27454876dc3da34e",
+        "type": "mqtt out",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "topic": "sensordaten",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2c79eddc0da533f9",
+        "x": 1390,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7814d17c772660d4",
+        "type": "debug",
+        "z": "281838443bc0d00c",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "717b2286e44cd4eb",
+        "type": "mqtt in",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "topic": "sensordaten",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2c79eddc0da533f9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 610,
+        "y": 500,
+        "wires": [
+            [
+                "7814d17c772660d4"
+            ]
+        ]
+    },
+    {
+        "id": "5a62b0c5473c8d31",
+        "type": "ui_gauge",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "group": "49312437144038f1",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Sauerstoffsättigung",
+        "label": "units",
+        "format": "{{value}}%",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 910,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ea664c8a92a2f20e",
+        "type": "ui_gauge",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "group": "49312437144038f1",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Puls",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#e01b24",
+            "#00b500",
+            "#f6d32d"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9accb46f54373d9d",
+        "type": "ui_numeric",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "label": "IR-Daten",
+        "tooltip": "",
+        "group": "49312437144038f1",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 680,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d48fd58b30d594e",
+        "type": "ui_numeric",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "label": "Red",
+        "tooltip": "",
+        "group": "49312437144038f1",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "wrap": false,
+        "passthru": true,
+        "topic": "topic",
+        "topicType": "msg",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 670,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "debug_output",
+        "type": "debug",
+        "z": "281838443bc0d00c",
+        "name": "Debug Ausgabe",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "buffer_data",
+        "type": "function",
+        "z": "281838443bc0d00c",
+        "name": "Daten puffern",
+        "func": "let buffer = context.flow.get('buffer') || [];\nlet now = new Date().getTime();\nbuffer.push({value: msg.payload, timestamp: now});\ncontext.flow.set('buffer', buffer);\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 420,
+        "wires": [
+            [
+                "calculate_average"
+            ]
+        ]
+    },
+    {
+        "id": "calculate_average",
+        "type": "function",
+        "z": "281838443bc0d00c",
+        "name": "Durchschnitt berechnen",
+        "func": "let buffer = context.flow.get('buffer') || [];\nlet now = new Date().getTime();\n// Remove data older than 1 minute\nbuffer = buffer.filter(item => now - item.timestamp <= 60000);\n// Calculate the average\nlet sum = buffer.reduce((acc, item) => acc + item.value, 0);\nlet avg = buffer.length > 0 ? sum / buffer.length : 0;\n// Save the updated buffer\ncontext.flow.set('buffer', buffer);\n// Set the average as the payload\nnode.warn(sum);\nmsg.payload = avg;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 420,
+        "wires": [
+            [
+                "debug_output"
+            ]
+        ]
+    },
+    {
+        "id": "6281fbdcca2df10f",
+        "type": "aggregator",
+        "z": "281838443bc0d00c",
+        "name": "",
+        "topic": "",
+        "intervalCount": "1",
+        "intervalUnits": "m",
+        "submitIncompleteInterval": true,
+        "submitPerTopic": false,
+        "aggregationType": "mean",
+        "x": 690,
+        "y": 220,
+        "wires": [
+            [
+                "a6ec3a286cad1d0f"
+            ]
+        ]
+    },
+    {
+        "id": "7467ef3a781d79e1",
+        "type": "serial-port",
+        "name": "/dev/ttyUSB0/",
+        "serialport": "/dev/ttyUSB0",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "100"
+    },
+    {
+        "id": "49312437144038f1",
+        "type": "ui_group",
+        "name": "Standard",
+        "tab": "6771810a615c9202",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2c79eddc0da533f9",
+        "type": "mqtt-broker",
+        "name": "Broker",
+        "broker": "localhost",
+        "port": "1885",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6771810a615c9202",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
